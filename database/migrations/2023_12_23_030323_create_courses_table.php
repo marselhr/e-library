@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('title', 255);
+            $table->integer('duration')->comment('per month');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
