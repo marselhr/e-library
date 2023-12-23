@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseMaterialController;
+use App\Http\Controllers\DashboardController;
+use App\Models\CourseMaterial;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', DashboardController::class);
+
+
+Route::resources([
+    'courses' => CourseController::class,
+    'course_materials' => CourseMaterialController::class
+]);
