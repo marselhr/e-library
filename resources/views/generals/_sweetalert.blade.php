@@ -3,11 +3,9 @@
         const success = $(".berhasil").data("berhasil");
         if (success) {
             swal.fire({
-                position: 'top-end',
-                title: "Berhasil!",
+title: "Berhasil!",
                 text: success,
                 icon: "success",
-                toast: true
             });
         }
 
