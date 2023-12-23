@@ -78,8 +78,17 @@ class CourseMaterialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CourseMaterial $courseMaterial)
+    public function destroy($course, $courseMaterial)
     {
-        //
+        try {
+
+            DB::beginTransaction();
+            $courseMaterial = CourseMaterial::findOrFail($courseMaterial);
+            $courseMaterial->delete();
+            DB::commit();
+            return redirect()->back()->with('success', trans('response.success.delete', ['data' => 'Materi']));
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }

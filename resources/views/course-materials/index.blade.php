@@ -105,9 +105,19 @@
                                                             <button class="btn btn-sm btn-success" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Edit Materi"><i
                                                                     class="iconly-boldEdit"></i></button>
-                                                            <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Hapus Materi"> <i
-                                                                    class="iconly-boldDelete"></i></button>
+
+                                                            <form id="delete-{{ $materi->id }}"
+                                                                action="{{ route('course_materials.destroy', [$course->id, $materi->id]) }}"
+                                                                method="POST">
+
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" class="btn btn-sm btn-danger"
+                                                                    onclick="alertConfirm(this)"
+                                                                    data-id="{{ $materi->id }}" data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top" data-bs-title="Hapus Materi"> <i
+                                                                        class="iconly-boldDelete"></i></button>
+                                                            </form>
                                                         </div>
                                                     </td>
                                                 </tr>
