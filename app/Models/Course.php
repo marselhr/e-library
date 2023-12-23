@@ -11,4 +11,10 @@ class Course extends Model
     use HasFactory, HasUuids;
 
     protected $guarded = ['id'];
+
+
+    public function courseMaterial()
+    {
+        return $this->hasMany(CourseMaterial::class);
+    }
 }
