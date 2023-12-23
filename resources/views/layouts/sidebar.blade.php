@@ -43,7 +43,7 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
-                <li class="sidebar-item  active">
+                <li class="sidebar-item  {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
                     <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
@@ -52,7 +52,7 @@
 
                 </li>
 
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::routeIs('courses.index') ? 'active' : '' }}">
                     <a href="{{ route('courses.index') }}" class='sidebar-link'>
                         <i class="bi bi-file-earmark-text-fill"></i>
                         <span>Courses</span>

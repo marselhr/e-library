@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
-use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -44,17 +46,39 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Course $course)
+    public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return response()->json($course);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCourseRequest $request, Course $course)
+    public function update(Request $request, $course)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $course = Course::findOrFail($course);
+            $request->validate([
+                'title' => [
+                    'required',
+                    Rule::unique('courses')->ignore($course->id),
+                ],
+                'duration' => 'required|integer|max:12|min:1'
+            ], $request->all());
+
+            $course->update([
+                'title' => $request->title,
+                'duration' => $request->duration
+            ]);
+            DB::commit();
+            return redirect()->back()->with('success', trans('response.success.update', ['data' => 'Data Kursus']));
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 
     /**

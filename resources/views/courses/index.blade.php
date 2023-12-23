@@ -13,10 +13,27 @@
 
     <script>
         new DataTable('#datatable');
+        const modalEdit = new bootstrap.Modal($('#modalEdit'))
+        $('#datatable').on('click', '.action-edit', function() {
+            const data = $(this).data()
+            modalEdit.show()
+            $("#myForm").attr('action', data.url_update);
+            $.ajax({
+                type: 'GET',
+                url: data.url_edit,
+                success: function(res) {
+                    $('input[name=title]').val(res.title)
+                    $('input[name=duration]').val(res.duration)
+                }
+            })
+        })
     </script>
 @endpush
 @section('content')
+    <!--Modals Start-->
+    @include('courses.modals.edit')
     @include('courses.modals.add')
+    <!--Modals End-->
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
@@ -70,9 +87,14 @@
                                                                 data-bs-placement="top"
                                                                 data-bs-title="Lihat Daftar Materi"><i
                                                                     class="iconly-boldShow"></i></a>
-                                                            <a class="btn btn-sm btn-success" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Edit Kursus"><i
-                                                                    class="iconly-boldEdit"></i></a>
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-success action-edit"
+                                                                data-id_kategori="{{ $course->id }}"
+                                                                data-url_edit="{{ route('courses.edit', $course->id) }}"
+                                                                data-url_update="{{ route('courses.update', $course->id) }}"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-title="Edit Kursus"><i
+                                                                    class="iconly-boldEdit"></i></button>
                                                             <form id="delete-{{ $course->id }}"
                                                                 action="{{ route('courses.destroy', $course) }}"
                                                                 method="POST">
