@@ -83,7 +83,8 @@
                                                     <td>
                                                         <div class="btn-group" role="group">
 
-                                                            <a class="btn btn-sm btn-info" data-bs-toggle="tooltip"
+                                                            <a href="{{ route('course_materials.index', $course) }}"
+                                                                class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top"
                                                                 data-bs-title="Lihat Daftar Materi"><i
                                                                     class="iconly-boldShow"></i></a>

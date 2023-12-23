@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUuid('course_id')->constrained('courses', 'id');
             $table->string('title', 255);
             $table->text('description');
-            $table->string('embed_link');
+            $table->text('embed_link');
             $table->softDeletes();
             $table->timestamps();
         });

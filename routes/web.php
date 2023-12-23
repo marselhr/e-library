@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', DashboardController::class)->name('admin.dashboard');
 
 
-Route::resources([
-    'courses' => CourseController::class,
-    'course_materials' => CourseMaterialController::class
-]);
+Route::resource('courses', CourseController::class,);
+
+Route::prefix('{course}')->group(function () {
+    Route::resource('course_materials', CourseMaterialController::class);
+});
