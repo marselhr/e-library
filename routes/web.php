@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', DashboardController::class);
+Route::get('/', DashboardController::class)->name('admin.dashboard');
 
 
 Route::resources([

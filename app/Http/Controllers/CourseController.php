@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -13,15 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $courses = Course::whereNull('deleted_at')->get();
+        return view('courses.index', compact('courses'));
     }
 
     /**
@@ -29,7 +23,14 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            Course::create($request->validated());
+            DB::commit();
+            return redirect()->back()->with('success', trans('response.success.store', ['data' => 'Data Kursus']));
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
     }
 
     /**
@@ -59,8 +60,17 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy($course)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $course = Course::find($course);
+            $course->delete();
+            DB::commit();
+            return redirect()->back()->with('success', trans('response.success.delete', ['data' => 'Data Kursus']));
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return redirect()->back()->with('error', trans('response.error.delete', ['data' => 'Data Kursus']));
+        }
     }
 }

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/table-datatable-jquery.css') }}">
 @endpush
 @push('customJs')
-    <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/static/js/pages/datatables.js') }}"></script>
@@ -74,9 +73,17 @@
                                                             <a class="btn btn-sm btn-success" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Edit Kursus"><i
                                                                     class="iconly-boldEdit"></i></a>
-                                                            <a class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" data-bs-title="Hapus Kursus"><i
-                                                                    class="iconly-boldDelete"></i></a>
+                                                            <form id="delete-{{ $course->id }}"
+                                                                action="{{ route('courses.destroy', $course) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" class="btn btn-sm btn-danger"
+                                                                    onclick ="alertConfirm(this)"
+                                                                    data-id="{{ $course->id }}" data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top" data-bs-title="Hapus Kursus"><i
+                                                                        class="iconly-boldDelete"></i></button>
+                                                            </form>
                                                         </div>
                                                     </td>
                                                 </tr>
