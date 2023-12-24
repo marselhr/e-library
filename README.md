@@ -100,6 +100,8 @@ To access the admin panel,
 -   [Delete Course](#delete-course)
 -   [Create Course Material](#create-course-material)
 -   [Read Course Material](#read-course-material)
+-   [Edit Course Material](#edit-course-material)
+-   [Delete Course Material](#delete-course-material)
 
 
 <a name="create-course"></a>
@@ -137,12 +139,13 @@ To access the admin panel,
 ### 6. View list of materials in a course.
 ![View Material](https://drive.google.com/uc?export=view&id=1G4y1jCE69x0yqoW0n7ZhkIMfYzkarwij)
 
-
+<a name="edit-course-material"></a>
 ### 7. Editing material information such as title, description, and embed material links.
 ![Edit Material](https://drive.google.com/uc?export=view&id=1mf6F7Xn2_uetH6SdAGGQ_-pmk9fKQs6x)
 ![Edit Material](https://drive.google.com/uc?export=view&id=12pI3718ptk40hHr8lwOR97BDAFKILrs1)
 ![Edit Material](https://drive.google.com/uc?export=view&id=1RuMkzzyN7UdQl8mUXPKFlIz7gEZbCE_U)
 
+<a name="delete-course-material"></a>
 ### 8. Remove irrelevant material in a course.
 ![Delete Material](https://drive.google.com/uc?export=view&id=1YKWBS51BRcCjrj8oKJy1N9lrHb-zOXK6)
 ![Delete Material](https://drive.google.com/uc?export=view&id=1N7Lrt5CyfxAgPyLeZ46H1aWE5fOa7Rlz)
