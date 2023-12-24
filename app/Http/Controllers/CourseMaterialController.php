@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\Models\CourseMaterial;
 use Illuminate\Http\Request;
+use App\Models\CourseMaterial;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 class CourseMaterialController extends Controller
@@ -16,7 +17,7 @@ class CourseMaterialController extends Controller
     {
 
         $course = Course::find($course);
-        $materials = $course->courseMaterial;
+        $materials = CourseMaterial::where('course_id', $course->id)->orderBy('order', 'ASC')->get();
         return view('course-materials.index', compact('materials', 'course'));
     }
 
@@ -62,17 +63,45 @@ class CourseMaterialController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CourseMaterial $courseMaterial)
+    public function edit($course, $courseMaterial)
     {
-        //
+        $course = Course::findOrFail($course);
+        $courseMaterial = $course->courseMaterial()->where('id', $courseMaterial)->firstOrFail();
+        return view('course-materials.edit', compact('course', 'courseMaterial'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CourseMaterial $courseMaterial)
+    public function update(Request $request, $course, $courseMaterial)
     {
-        //
+        DB::beginTransaction();
+        $courseMaterial = CourseMaterial::findOrFail($courseMaterial);
+        $request->validate([
+            'title' =>   [
+                'required',
+                Rule::unique('course_materials')->ignore($courseMaterial->id),
+            ],
+            'order' => 'required|integer',
+            'description' => 'required',
+            'embed_link' => 'required'
+        ], [
+            'title.required' => 'Judul Materi Tidak Boleh Kosong',
+            'title.unique' => 'Judul Materi Telah Digunakan',
+            'description.required' => 'Deskripsi Materi Wajib Diisi',
+            'embed_link.required' => 'Silahkan Sematkan Tautan Materi',
+            'order.required' => 'Silahkan Masukkan Urutan Materi',
+            'order.integer' => 'Urutan Harus Berupa Angka',
+        ]);
+
+        $courseMaterial->update([
+            'order' => $request->order,
+            'title' => $request->title,
+            'description' => $request->description,
+            'embed_link' => $request->embed_link,
+        ]);
+        DB::commit();
+        return to_route('course_materials.index', $course)->with('success', trans('response.success.update', ['data' => 'Materi']));
     }
 
     /**

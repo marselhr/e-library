@@ -58,7 +58,7 @@
                                     <table class="table dataTable no-footer" id="datatable" aria-describedby="table1_info">
                                         <thead>
                                             <tr>
-                                                <th class="text-center text-capitalize">#</th>
+                                                <th class="text-center text-capitalize">URUTAN</th>
                                                 <th class="text-center text-capitalize">JUDUL MATERI</th>
                                                 <th class="text-center text-capitalize">DESKRIPSI</th>
                                                 <th class="text-center text-capitalize">SEMATAN TAUTAN</th>
@@ -68,7 +68,7 @@
                                         <tbody>
                                             @foreach ($materials as $materi)
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $materi->order }}</td>
                                                     <td>{{ $materi->title }}</td>
                                                     <td>
                                                         <div class="accordion" id="accordionExample">
@@ -102,9 +102,10 @@
                                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                                 data-bs-title="Detail">
                                                                 <i class="iconly-boldShow"></i></button>
-                                                            <button class="btn btn-sm btn-success" data-bs-toggle="tooltip"
+                                                            <a href="{{ route('course_materials.edit', [$course->id, $materi->id]) }}"
+                                                                class="btn btn-sm btn-success" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" data-bs-title="Edit Materi"><i
-                                                                    class="iconly-boldEdit"></i></button>
+                                                                    class="iconly-boldEdit"></i></a>
 
                                                             <form id="delete-{{ $materi->id }}"
                                                                 action="{{ route('course_materials.destroy', [$course->id, $materi->id]) }}"
