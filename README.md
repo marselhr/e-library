@@ -94,12 +94,17 @@ To access the admin panel,
 <a name="item4"></a>
 
 ## Screenshoot
+-   [Create Course](#create-course)
+-   [Read Course](#read-course)
 
+
+<a name="create-course"></a>
 #### 1.  Create a new course with a title, description, and duration.
 ![Create Course 1](https://drive.google.com/uc?export=view&id=1J0sozeh-thaMvOsKPjs8PThezlcUCf8G)
 ![Create Course 2](https://drive.google.com/uc?export=view&id=1qwXaeby2aMMTrHNfiLNkLfptS2z-i5uW)
 ![Create Course 3](https://drive.google.com/uc?export=view&id=1E6D111BesMTJ0n9iDLKTj5owpKVD-QbL)
 
+<a name="read-course"></a>
 ### 2. Read the list of courses and details.
 ![Create Course 3](https://drive.google.com/uc?export=view&id=1E6D111BesMTJ0n9iDLKTj5owpKVD-QbL)
 ![Create Course 1](https://drive.google.com/uc?export=view&id=1SWA_rkTuFv1erkksarAxcefDUXoyL9Cf)
@@ -109,7 +114,7 @@ To access the admin panel,
 ![Edit Course 2](https://drive.google.com/uc?export=view&id=1wBd-wXjyV6ueDCSwFd_OzKchbL-STqan)
 ![Edit Course 3](https://drive.google.com/uc?export=view&id=1wkoeLerKwVIrGpwf-oKbqBdHw9nkWjzO)
 
-
+<a name="item3"></a>
 ### 4. Deleting irrelevant courses.
 ![Delete](https://drive.google.com/uc?export=view&id=1zBdsyySqtRYOniQOkpnni8CkH1L55Pm8)
 ![Delete](https://drive.google.com/uc?export=view&id=1eMuvrBskZq2lcBP8zJnRY78SZd17istX)
