@@ -38,7 +38,8 @@
                     <div class="row ">
 
                         <div class="col-12 col-md-6 order-md-1 order-last ">
-                            <h5 class="card-title">{{ $course->title }}</h5>
+                            <h5 class="card-title">{{ $course->title }} <span class="text-muted"> ({{ $course->duration }}
+                                    Bulan)</span></h5>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <a href="{{ route('course_materials.create', $course) }}"

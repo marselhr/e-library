@@ -96,6 +96,9 @@ To access the admin panel,
 ## Screenshoot
 -   [Create Course](#create-course)
 -   [Read Course](#read-course)
+-   [Edit Course](#edit-course)
+-   [Delete Course](#delete-course)
+-   [Create Course Material](#create-course-material)
 
 
 <a name="create-course"></a>
@@ -109,17 +112,21 @@ To access the admin panel,
 ![Create Course 3](https://drive.google.com/uc?export=view&id=1E6D111BesMTJ0n9iDLKTj5owpKVD-QbL)
 ![Create Course 1](https://drive.google.com/uc?export=view&id=1SWA_rkTuFv1erkksarAxcefDUXoyL9Cf)
 
+
+<a name="edit-course"></a>
 ### 3. Edit course information such as title, description, and duration.  
 ![Edit Course 1](https://drive.google.com/uc?export=view&id=1t-rGoyBLppHkOldQ3ZpCmVr1Zxsr5Vhh)
 ![Edit Course 2](https://drive.google.com/uc?export=view&id=1wBd-wXjyV6ueDCSwFd_OzKchbL-STqan)
 ![Edit Course 3](https://drive.google.com/uc?export=view&id=1wkoeLerKwVIrGpwf-oKbqBdHw9nkWjzO)
 
-<a name="item3"></a>
+
+<a name="delete-course"></a>
 ### 4. Deleting irrelevant courses.
 ![Delete](https://drive.google.com/uc?export=view&id=1zBdsyySqtRYOniQOkpnni8CkH1L55Pm8)
 ![Delete](https://drive.google.com/uc?export=view&id=1eMuvrBskZq2lcBP8zJnRY78SZd17istX)
 ![Delete](https://drive.google.com/uc?export=view&id=1Y6HQEZAyz73EfCfNhKB3bpm4yvtUOz4y)
 
+<a name="create-course-material"></a>
 ### 5. Adding material into the course with a title, description, and material embed link.
 ![Create Material](https://drive.google.com/uc?export=view&id=188fRtwFuI2c8hKhXWt8AjSZmqz6D8ky_)
 ![Create Material](https://drive.google.com/uc?export=view&id=10kGccR6q6bUGSPKHZhm87ngbAaO4Z7oW)
