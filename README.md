@@ -99,6 +99,7 @@ To access the admin panel,
 -   [Edit Course](#edit-course)
 -   [Delete Course](#delete-course)
 -   [Create Course Material](#create-course-material)
+-   [Read Course Material](#read-course-material)
 
 
 <a name="create-course"></a>
@@ -132,6 +133,7 @@ To access the admin panel,
 ![Create Material](https://drive.google.com/uc?export=view&id=10kGccR6q6bUGSPKHZhm87ngbAaO4Z7oW)
 ![Create Material](https://drive.google.com/uc?export=view&id=1G4y1jCE69x0yqoW0n7ZhkIMfYzkarwij)
 
+<a name="read-course-material"></a>
 ### 6. View list of materials in a course.
 ![View Material](https://drive.google.com/uc?export=view&id=1G4y1jCE69x0yqoW0n7ZhkIMfYzkarwij)
 
