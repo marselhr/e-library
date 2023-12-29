@@ -107,12 +107,15 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Book  $book
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(string $slug)
     {
-        //
+        $book = Book::where('slug', $slug)->with(['user', 'category'])->firstOrFail();
+        $categories = BookCategory::whereNull('deleted_at')->get();
+
+        return view('admin.pages.edit-book', compact('book', 'categories'));
     }
 
     /**

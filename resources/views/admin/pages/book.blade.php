@@ -93,9 +93,10 @@
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="Detail">
                                                             <i class="iconly-boldShow"></i></a>
-                                                        <a href="" class="btn btn-sm btn-success"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Edit Materi"><i class="iconly-boldEdit"></i></a>
+                                                        <a href="{{ route('books.edit', $book->slug) }}"
+                                                            class="btn btn-sm btn-success" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" data-bs-title="Edit Buku"><i
+                                                                class="iconly-boldEdit"></i></a>
 
                                                         <form id="delete-{{ $book->id }}"
                                                             action="{{ route('books.delete', $book->id) }}" method="POST">
