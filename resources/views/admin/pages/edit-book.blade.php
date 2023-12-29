@@ -25,8 +25,9 @@
                     <h5 class="card-title">Formulir Edit Buku</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="form-group mb-3">
                             <label for="title" class="form-label">Judul Buku</label>
                             <input type="text" name="title"
@@ -47,7 +48,7 @@
                                 <select name="category_id" id=""
                                     class="form-select @error('category_id') is-invalid @enderror">
                                     @foreach ($categories as $category)
-                                        @if ($book->category->id === $category->id)
+                                        @if ($book->category->id ?? '' === $category->id)
                                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                         @elseif (old('category_id') === $category->id)
                                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
@@ -99,7 +100,7 @@
                         <div class="form-group mb-3">
 
                             <label for="description" class="form-label">Deskripsi Buku</label>
-                            <textarea name="description" id="editor_description" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                            <textarea name="description" id="editor_description" class="form-control @error('description') is-invalid @enderror">{{ $book->description }}</textarea>
 
                             @error('description')
                                 <div class="invalid-feedback">

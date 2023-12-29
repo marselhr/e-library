@@ -62,7 +62,12 @@
                             <div class="form-group mb-3 col-12 col-md-6">
                                 <label for="" class="form-label">Jumlah</label>
                                 <input type="number" name="quantity" value="{{ old('quantity') }}" min="1"
-                                    id="" class="form-control">
+                                    id="" class="form-control @error('quantity') is-invalid @enderror">
+                                @error('quantity')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">

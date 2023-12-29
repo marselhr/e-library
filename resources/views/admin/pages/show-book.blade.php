@@ -44,6 +44,11 @@
                         <h5>Detail Lainnya</h5>
                         <table>
                             <tr>
+                                <td>Slug</td>
+                                <td class="mx-3">:</td>
+                                <td>{{ $book->slug ?? 'Tidak Ada' }}</td>
+                            </tr>
+                            <tr>
                                 <td>Kategori</td>
                                 <td class="mx-3">:</td>
                                 <td>{{ $book->category->name ?? 'Tidak Ada' }}</td>

@@ -87,26 +87,38 @@
                                         <tr>
                                             <th>Judul</th>
                                             <th>Categori</th>
-                                            <th>Pengunggah</th>
+
+                                            @if (Auth::user()->role_id == 2)
+                                                <th>Pengunggah</th>
+                                            @endif
+
+                                            <td>Jumlah</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-md">
-                                                        <img src="assets/static/images/faces/5.jpg">
+                                        @foreach ($books as $book)
+                                            <tr>
+                                                <td class="col-6">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="avatar avatar-md">
+                                                            <img src="assets/static/images/faces/5.jpg">
+                                                        </div>
+                                                        <p class="font-bold ms-3 mb-0">{{ $book->title }}</p>
                                                     </div>
-                                                    <p class="font-bold ms-3 mb-0">Buku A</p>
-                                                </div>
-                                            </td>
-                                            <td class="col-3">
-                                                <p class=" mb-0">IPTEK</p>
-                                            </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">Anda</p>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td class="col-3">
+                                                    <p class=" mb-0">{{ $book->category->name }}</p>
+                                                </td>
+
+                                                @if (Auth::user()->role_id == 2)
+                                                    <td class="col-auto">
+                                                        <p class=" mb-0">{{ $book->user->name ?? '' }}</p>
+                                                    </td>
+                                                @endif
+                                                <td>{{ $book->quantity }}</td>
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
