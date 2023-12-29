@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BookCategory;
-use App\Http\Requests\StoreBookCategoryRequest;
-use App\Http\Requests\UpdateBookCategoryRequest;
+use Illuminate\Http\Request;
 
 class BookCategoryController extends Controller
 {
@@ -15,7 +14,7 @@ class BookCategoryController extends Controller
      */
     public function index()
     {
-        $categories = BookCategory::all();
+        $categories = BookCategory::whereNull('deleted_at')->orderBy('updated_at', 'DESC')->get();
 
         return view('admin.pages.category', compact('categories'));
     }
@@ -27,18 +26,23 @@ class BookCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.add-category');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBookCategoryRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBookCategoryRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:3|max:550',
+        ]);
+        BookCategory::create($validated);
+        return to_route('categories.index')->with('success', trans('response.success.store', ['data' => 'Kategory Buku']));
     }
 
     /**
@@ -66,11 +70,10 @@ class BookCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBookCategoryRequest  $request
      * @param  \App\Models\BookCategory  $bookCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookCategoryRequest $request, BookCategory $bookCategory)
+    public function update(Request $request, BookCategory $bookCategory)
     {
         //
     }

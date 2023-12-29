@@ -48,7 +48,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <a href="" class="btn btn-primary float-end ">Tambah Kategory</a>
+                <a href="{{ route('categories.create') }}" class="btn btn-primary float-end ">Tambah Kategory</a>
             </div>
             {{-- @include('generals._validation') --}}
             <div class="card-body">
@@ -89,7 +89,7 @@
                                                             data-bs-title="Edit Materi"><i class="iconly-boldEdit"></i></a>
 
                                                         <form id="delete-{{ $category->id }}"
-                                                            action="{{ route('category.delete', $category->id) }}"
+                                                            action="{{ route('categories.delete', $category->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')

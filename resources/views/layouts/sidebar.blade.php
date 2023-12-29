@@ -60,8 +60,9 @@
                 </li>
 
                 @if (Auth::user()->role_id == 2)
-                    <li class="sidebar-item {{ Request::routeIs('category.index') ? 'active' : '' }}">
-                        <a href="{{ route('category.index') }}" class='sidebar-link'>
+                    <li
+                        class="sidebar-item {{ Request::routeIs('categories.index') || Request::routeIs('categories.create') ? 'active' : '' }}">
+                        <a href="{{ route('categories.index') }}" class='sidebar-link'>
                             <i class="bi bi-box-fill"></i>
                             <span>Data Kategori</span>
                         </a>
