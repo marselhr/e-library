@@ -11,6 +11,7 @@ use App\Models\BookCategory;
 use App\Models\CourseMaterial;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,17 @@ class DatabaseSeeder extends Seeder
         Course::factory(10)->has(
             CourseMaterial::factory(10)
         )->create();
+
+        DB::table('roles')->insert([
+            [
+                'name' => 'guest',
+                'description' => 'guest user',
+            ],
+            [
+                'name' => 'admin',
+                'description' => 'administrator',
+            ],
+        ]);
         BookCategory::factory()->count(5)->create();
         User::factory()->count(5)->has(
             Book::factory()->count(10)
