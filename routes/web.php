@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/books/create', [BookController::class, 'store'])->name('books.store');
     Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.delete');
 });
+Route::middleware(['auth', 'is.admin'])->group(function () {
+    Route::get('/categories', [BookCategoryController::class, 'index'])->name('category.index');
+    Route::delete('/categories/{id}', [BookCategoryController::class, 'destroy'])->name('category.delete');
+});
 
 Auth::routes();
 
