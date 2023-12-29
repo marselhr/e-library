@@ -35,3 +35,7 @@ Route::get('/books', [BookController::class, 'index'])->name('book.index');
 Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
 Route::post('/books/create', [BookController::class, 'store'])->name('books.store');
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.delete');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
