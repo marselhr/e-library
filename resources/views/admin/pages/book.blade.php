@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Daftar Buku'])
 
 
 @push('customCss')
@@ -14,20 +14,6 @@
 
     <script>
         new DataTable('#datatable');
-        // const modalEdit = new bootstrap.Modal($('#modalEdit'))
-        // $('#datatable').on('click', '.action-edit', function() {
-        //     const data = $(this).data()
-        //     modalEdit.show()
-        //     $("#myForm").attr('action', data.url_update);
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: data.url_edit,
-        //         success: function(res) {
-        //             $('input[name=title]').val(res.title)
-        //             $('input[name=duration]').val(res.duration)
-        //         }
-        //     })
-        // })
     </script>
 @endpush
 
@@ -48,7 +34,10 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
+
                 <a href="{{ route('book.create') }}" class="btn btn-primary float-end ">Tambah Buku</a>
+
+                <a href="{{ route('books.export') }}" class="btn btn-success ">Export</a>
             </div>
             {{-- @include('generals._validation') --}}
             <div class="card-body">
@@ -105,7 +94,7 @@
                                                             <button type="button" class="btn btn-sm btn-danger"
                                                                 onclick="alertConfirm(this)" data-id="{{ $book->id }}"
                                                                 data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                data-bs-title="Hapus Materi"> <i
+                                                                data-bs-title="Hapus Buku"> <i
                                                                     class="iconly-boldDelete"></i></button>
                                                         </form>
                                                     </div>

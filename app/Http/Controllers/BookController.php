@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Book;
+use App\Exports\BooksExport;
 use App\Models\BookCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class BookController extends Controller
 {
@@ -206,5 +210,15 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->back()->with('success', trans('response.success.delete', ['data' => 'Data Buku']));
+    }
+
+    public function exportExcel()
+    {
+        try {
+            $date = date('Y_m_d_mhs', time());
+            return Excel::download(new BooksExport(), 'export_data_buku_' . $date . '.xlsx');
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 }

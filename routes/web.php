@@ -32,6 +32,7 @@ Route::get('/categories', [BookCategoryController::class, 'index'])->name('categ
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/books/export', [BookController::class, 'exportExcel'])->name('books.export');
     Route::get('/books', [BookController::class, 'index'])->name('book.index');
     Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
     Route::post('/books/create', [BookController::class, 'store'])->name('books.store');
