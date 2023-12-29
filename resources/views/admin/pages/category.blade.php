@@ -68,12 +68,7 @@
                                                 <td>{{ $category->updated_at }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button
-                                                            class="btn
-                                                                btn-sm btn-info"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Detail">
-                                                            <i class="iconly-boldShow"></i></button>
+
                                                         <a href="{{ route('categories.edit', $category->id) }}"
                                                             class="btn btn-sm btn-success" data-bs-toggle="tooltip"
                                                             data-bs-placement="top" data-bs-title="Edit Kategori"><i
