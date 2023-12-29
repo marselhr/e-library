@@ -14,20 +14,6 @@
 
     <script>
         new DataTable('#datatable');
-        // const modalEdit = new bootstrap.Modal($('#modalEdit'))
-        // $('#datatable').on('click', '.action-edit', function() {
-        //     const data = $(this).data()
-        //     modalEdit.show()
-        //     $("#myForm").attr('action', data.url_update);
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: data.url_edit,
-        //         success: function(res) {
-        //             $('input[name=title]').val(res.title)
-        //             $('input[name=duration]').val(res.duration)
-        //         }
-        //     })
-        // })
     </script>
 @endpush
 
