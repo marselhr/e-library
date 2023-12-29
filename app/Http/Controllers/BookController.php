@@ -95,12 +95,13 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show($slug)
     {
-        //
+        $book = Book::where('slug', $slug)->with(['category', 'user'])->firstOrFail();
+
+        return view('admin.pages.show-book', compact('book'));
     }
 
     /**

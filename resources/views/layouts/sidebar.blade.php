@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="#">E-LIB</a>
+                    <a href="{{ route('home') }}">E-LIB</a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -52,7 +52,8 @@
 
                 </li>
 
-                <li class="sidebar-item {{ Request::routeIs('book.index') ? 'active' : '' }}">
+                <li
+                    class="sidebar-item {{ Request::routeIs('book.index') || Request::routeIs('books.show') || Request::routeIs('book.edit') ? 'active' : '' }}">
                     <a href="{{ route('book.index') }}" class='sidebar-link'>
                         <i class="bi bi-book-fill"></i>
                         <span>Data Buku</span>

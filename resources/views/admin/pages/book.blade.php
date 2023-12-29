@@ -81,19 +81,18 @@
                                                         height="200" />
                                                 </td>
                                                 <td>{{ $book->title }}</td>
-                                                <td><span
-                                                        style="max-width: 2rem; max-lines: 2">{{ $book->description }}</span>
+                                                <td class="word-wrap">{{ $book->description }}</span>
                                                 </td>
                                                 <td>{{ $book->category->name ?? 'Tidak Ada' }}</td>
                                                 <td>{{ $book->quantity }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button
+                                                        <a href="{{ route('books.show', $book->slug) }}"
                                                             class="btn
                                                                 btn-sm btn-info"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="Detail">
-                                                            <i class="iconly-boldShow"></i></button>
+                                                            <i class="iconly-boldShow"></i></a>
                                                         <a href="" class="btn btn-sm btn-success"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="Edit Materi"><i class="iconly-boldEdit"></i></a>
