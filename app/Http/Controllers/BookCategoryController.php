@@ -15,7 +15,9 @@ class BookCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = BookCategory::all();
+
+        return view('admin.pages.category', compact('categories'));
     }
 
     /**

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BookCategoryController;
 use App\Http\Controllers\CourseMaterialController;
 
 /*
@@ -26,6 +27,9 @@ Route::resource('courses', CourseController::class,);
 Route::prefix('{course}')->group(function () {
     Route::resource('course_materials', CourseMaterialController::class);
 });
+
+Route::get('/categories', [BookCategoryController::class, 'index'])->name('category.index');
+
 
 Route::get('/books', [BookController::class, 'index'])->name('book.index');
 Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
