@@ -42,7 +42,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $categories = BookCategory::all();
+        $categories = BookCategory::whereNull('deleted_at')->get();
         return view('admin.pages.add-book', compact('categories'));
     }
 
