@@ -19,7 +19,7 @@ use App\Http\Controllers\CourseMaterialController;
 |
 */
 
-Route::get('/', DashboardController::class)->name('admin.dashboard');
+Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');
 
 
 Route::resource('courses', CourseController::class,);
@@ -38,4 +38,4 @@ Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.de
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

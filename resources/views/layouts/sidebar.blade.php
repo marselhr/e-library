@@ -52,11 +52,10 @@
 
                 </li>
 
-                <li
-                    class="sidebar-item {{ Request::routeIs('courses.index') || Request::routeIs('course_materials.index') ? 'active' : '' }}">
-                    <a href="{{ route('courses.index') }}" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-text-fill"></i>
-                        <span>Courses</span>
+                <li class="sidebar-item {{ Request::routeIs('book.index') ? 'active' : '' }}">
+                    <a href="{{ route('book.index') }}" class='sidebar-link'>
+                        <i class="bi bi-book-fill"></i>
+                        <span>Data Buku</span>
                     </a>
                 </li>
             </ul>
