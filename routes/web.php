@@ -31,10 +31,12 @@ Route::prefix('{course}')->group(function () {
 Route::get('/categories', [BookCategoryController::class, 'index'])->name('category.index');
 
 
-Route::get('/books', [BookController::class, 'index'])->name('book.index');
-Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
-Route::post('/books/create', [BookController::class, 'store'])->name('books.store');
-Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.delete');
+Route::middleware('auth')->group(function () {
+    Route::get('/books', [BookController::class, 'index'])->name('book.index');
+    Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
+    Route::post('/books/create', [BookController::class, 'store'])->name('books.store');
+    Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.delete');
+});
 
 Auth::routes();
 
