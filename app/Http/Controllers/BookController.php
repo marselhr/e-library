@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use File;
+use Exception;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\BookCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\error;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBookRequest;
+
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateBookRequest;
-use Exception;
-
-use function Laravel\Prompts\error;
 
 class BookController extends Controller
 {
@@ -24,7 +25,12 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with(['category', 'user'])->get();
+        $books = Book::orderBy('updated_at', 'DESC')->with(['user', 'category'])->get();
+
+        // role id for admin = 2
+        if (Auth::user()->role_id !== 2) {
+            $books = $books->where('user_id', Auth::user()->id);
+        }
 
         return view('admin.pages.book', compact('books'));
     }
@@ -72,7 +78,7 @@ class BookController extends Controller
             DB::beginTransaction();
 
             Book::create([
-                'user_id' => User::firstOrFail(['id'])->id, //nanti dibenerin
+                'user_id' => Auth::user()->id, //nanti dibenerin
                 'category_id' => $request->category_id,
                 'title' => $request->title,
                 'quantity' => $request->quantity,
