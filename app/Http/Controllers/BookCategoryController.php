@@ -39,7 +39,7 @@ class BookCategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|min:3|max:255',
+            'name' => 'required|string|min:3|max:255|unique:book_categories,name',
             'description' => 'required|string|min:3|max:550',
         ]);
         BookCategory::create($validated);
@@ -85,7 +85,7 @@ class BookCategoryController extends Controller
             ],
             'description' => 'required'
         ]);
-
+        $category->slug = '';
         $category->update($validated);
         return to_route('categories.index')->with('success', trans('response.success.update', ['data' => 'Kategory Buku']));
     }

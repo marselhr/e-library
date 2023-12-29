@@ -52,6 +52,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>NAMA</th>
+                                            <th>SLUG</th>
                                             <th>DESKRIPSI </th>
                                             <th>TERAKHIR DISIMPAN</th>
                                             <th>AKSI</th>
@@ -62,6 +63,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $category->name }}</td>
+                                                <td>{{ $category->slug }}</td>
                                                 <td>{{ $category->description }}</td>
                                                 <td>{{ $category->updated_at }}</td>
                                                 <td>
