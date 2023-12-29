@@ -3,7 +3,7 @@
         const success = $(".berhasil").data("berhasil");
         if (success) {
             swal.fire({
-title: "Berhasil!",
+                title: "Berhasil!",
                 text: success,
                 icon: "success",
             });

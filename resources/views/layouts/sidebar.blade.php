@@ -41,7 +41,7 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-title">Menu</li>
+                <li class="sidebar-title">Menu Utama</li>
 
                 <li class="sidebar-item  {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
                     <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
@@ -58,6 +58,16 @@
                         <span>Data Buku</span>
                     </a>
                 </li>
+
+                @if (Auth::user()->role_id == 2)
+                    <li class="sidebar-item {{ Request::routeIs('category.index') ? 'active' : '' }}">
+                        <a href="{{ route('category.index') }}" class='sidebar-link'>
+                            <i class="bi bi-box-fill"></i>
+                            <span>Data Kategori</span>
+                        </a>
+                    </li>
+                @endif
+
             </ul>
         </div>
     </div>
