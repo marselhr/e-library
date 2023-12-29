@@ -18,35 +18,18 @@
                         @csrf
 
                         <!-- Username -->
-                        <div class="mb-3 d-lg-flex gap-1 justify-content-between">
-                            <div class="col-lg-6">
+                        <div class="mb-3 ">
 
-                                <label for="first-name" class="col-form-label">{{ __('Nama Depan') }}</label>
+                            <label for="name" class="col-form-label">{{ __('Username') }}</label>
 
-                                <input id="first-name" type="text"
-                                    class="form-control @error('first_name') is-invalid @enderror" name="first_name"
-                                    value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('first_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-lg-6">
-
-                                <label for="last-name" class="col-form-label">{{ __('Nama Belakang') }}</label>
-
-                                <input id="last-name" type="text"
-                                    class="form-control @error('last-name') is-invalid @enderror" name="last_name"
-                                    value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
-
-                                @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <!-- Email -->
                         <div class="mb-3">
