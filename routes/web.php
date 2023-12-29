@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\CourseMaterialController;
-use App\Http\Controllers\DashboardController;
 use App\Models\CourseMaterial;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CourseMaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,8 @@ Route::resource('courses', CourseController::class,);
 Route::prefix('{course}')->group(function () {
     Route::resource('course_materials', CourseMaterialController::class);
 });
+
+Route::get('/books', [BookController::class, 'index'])->name('book.index');
+Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
+Route::post('/books/create', [BookController::class, 'store'])->name('books.store');
+Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.delete');
