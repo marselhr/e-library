@@ -78,11 +78,16 @@ class BookCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BookCategory  $bookCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookCategory $bookCategory)
+    public function destroy($bookCategory)
     {
-        //
+        try {
+            $bookCategory = BookCategory::find($bookCategory);
+            $bookCategory->delete();
+            return redirect()->back()->with('success', trans('response.success.delete', ['data' => 'Kategory Buku']));
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 }
