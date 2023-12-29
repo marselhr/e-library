@@ -20,12 +20,12 @@
 @section('content')
     <div class="row">
         <div class="col-12 col-md-6 order-md-1 order-last">
-            <h3>Data Kategory Buku</h3>
+            <h3>Data Kategori Buku</h3>
         </div>
         <div class="col-12 col-md-6 order-md-2 order-first">
             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Data Kategory Buku</li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Kategori Buku</li>
                 </ol>
             </nav>
         </div>
@@ -34,7 +34,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('categories.create') }}" class="btn btn-primary float-end ">Tambah Kategory</a>
+                <a href="{{ route('categories.create') }}" class="btn btn-primary float-end ">Tambah Kategori</a>
             </div>
             {{-- @include('generals._validation') --}}
             <div class="card-body">
