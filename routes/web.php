@@ -41,6 +41,8 @@ Route::middleware(['auth', 'is.admin'])->group(function () {
     Route::get('/categories', [BookCategoryController::class, 'index'])->name('categories.index');
     Route::get('/categories/create', [BookCategoryController::class, 'create'])->name('categories.create');
     Route::post('/categories', [BookCategoryController::class, 'store'])->name('categories.store');
+    Route::get('/categories/{id}', [BookCategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/categories/{id}', [BookCategoryController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{id}', [BookCategoryController::class, 'destroy'])->name('categories.delete');
 });
 

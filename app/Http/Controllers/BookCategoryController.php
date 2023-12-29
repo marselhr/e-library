@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookCategory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BookCategoryController extends Controller
 {
@@ -59,12 +60,13 @@ class BookCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BookCategory  $bookCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookCategory $bookCategory)
+    public function edit($bookCategory)
     {
-        //
+        $category = BookCategory::find($bookCategory);
+
+        return view('admin.pages.edit-category', compact('category'));
     }
 
     /**
@@ -73,9 +75,19 @@ class BookCategoryController extends Controller
      * @param  \App\Models\BookCategory  $bookCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BookCategory $bookCategory)
+    public function update(Request $request,  $bookCategory)
     {
-        //
+        $category = BookCategory::findOrFail($bookCategory);
+        $validated = $request->validate([
+            'name' => [
+                'required',
+                Rule::unique('book_categories')->ignore($category->id),
+            ],
+            'description' => 'required'
+        ]);
+
+        $category->update($validated);
+        return to_route('categories.index')->with('success', trans('response.success.update', ['data' => 'Kategory Buku']));
     }
 
     /**

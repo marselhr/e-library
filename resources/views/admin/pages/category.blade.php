@@ -25,6 +25,7 @@
         <div class="col-12 col-md-6 order-md-2 order-first">
             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                 <ol class="breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page"><a href="">Dashboard</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Data Kategori Buku</li>
                 </ol>
             </nav>
@@ -34,7 +35,8 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('categories.create') }}" class="btn btn-primary float-end ">Tambah Kategori</a>
+                <a href="{{ route('categories.create') }}" class="btn btn-primary float-end " data-bs-toggle="tooltip"
+                    data-bs-placement="top" data-bs-title="Tambah Data Kategori">Tambah Kategori</a>
             </div>
             {{-- @include('generals._validation') --}}
             <div class="card-body">
@@ -70,9 +72,10 @@
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="Detail">
                                                             <i class="iconly-boldShow"></i></button>
-                                                        <a href="" class="btn btn-sm btn-success"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Edit Materi"><i class="iconly-boldEdit"></i></a>
+                                                        <a href="{{ route('categories.edit', $category->id) }}"
+                                                            class="btn btn-sm btn-success" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" data-bs-title="Edit Kategori"><i
+                                                                class="iconly-boldEdit"></i></a>
 
                                                         <form id="delete-{{ $category->id }}"
                                                             action="{{ route('categories.delete', $category->id) }}"
@@ -82,7 +85,7 @@
                                                             <button type="button" class="btn btn-sm btn-danger"
                                                                 onclick="alertConfirm(this)" data-id="{{ $category->id }}"
                                                                 data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                data-bs-title="Hapus Materi"> <i
+                                                                data-bs-title="Hapus Kategori"> <i
                                                                     class="iconly-boldDelete"></i></button>
                                                         </form>
                                                     </div>
