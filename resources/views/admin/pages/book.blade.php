@@ -84,7 +84,7 @@
                                                 <td><span
                                                         style="max-width: 2rem; max-lines: 2">{{ $book->description }}</span>
                                                 </td>
-                                                <td>{{ $book->category->name }}</td>
+                                                <td>{{ $book->category->name ?? 'Tidak Ada' }}</td>
                                                 <td>{{ $book->quantity }}</td>
                                                 <td>
                                                     <div class="btn-group">

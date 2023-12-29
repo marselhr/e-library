@@ -89,7 +89,7 @@
                                                             data-bs-title="Edit Materi"><i class="iconly-boldEdit"></i></a>
 
                                                         <form id="delete-{{ $category->id }}"
-                                                            action="{{ route('books.delete', $category->id) }}"
+                                                            action="{{ route('category.delete', $category->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
