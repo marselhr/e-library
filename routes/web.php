@@ -1,12 +1,9 @@
 <?php
 
-use App\Models\CourseMaterial;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookCategoryController;
-use App\Http\Controllers\CourseMaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,16 +17,6 @@ use App\Http\Controllers\CourseMaterialController;
 */
 
 Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');
-
-
-Route::resource('courses', CourseController::class,);
-
-Route::prefix('{course}')->group(function () {
-    Route::resource('course_materials', CourseMaterialController::class);
-});
-
-Route::get('/categories', [BookCategoryController::class, 'index'])->name('category.index');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/books/export', [BookController::class, 'exportExcel'])->name('books.export');
