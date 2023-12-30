@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Book::class);
     }
+
+    public function isAdmin(): Bool
+    {
+        return $this->role_id == 2;
+    }
 }
