@@ -35,9 +35,10 @@
         <div class="card">
             <div class="card-header">
 
-                <a href="{{ route('book.create') }}" class="btn btn-primary float-end ">Tambah Buku</a>
-
-                <a href="{{ route('books.export') }}" class="btn btn-success ">Export</a>
+                <a href="{{ route('book.create') }}" class="btn btn-sm btn-primary float-end ">Tambah Buku</a>
+                @if ($books->count() > 0)
+                    <a href="{{ route('books.export') }}" class="btn btn-sm btn-success ">Export</a>
+                @endif
             </div>
             {{-- @include('generals._validation') --}}
             <div class="card-body">
@@ -87,15 +88,15 @@
                                                             data-bs-placement="top" data-bs-title="Edit Buku"><i
                                                                 class="iconly-boldEdit"></i></a>
 
-                                                        <form id="delete-{{ $book->id }}"
+                                                        <form id="delete-{{ $book->id }}" class="btn btn-sm btn-danger"
                                                             action="{{ route('books.delete', $book->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="button" class="btn btn-sm btn-danger"
+                                                            <a class="text-white" role="button"
                                                                 onclick="alertConfirm(this)" data-id="{{ $book->id }}"
                                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                                 data-bs-title="Hapus Buku"> <i
-                                                                    class="iconly-boldDelete"></i></button>
+                                                                    class="iconly-boldDelete"></i></a>
                                                         </form>
                                                     </div>
                                                 </td>
