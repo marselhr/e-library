@@ -17,24 +17,27 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array<class-string, class-string>
      */
-    protected $policies = [];
+    protected $policies = [
+        Book::class => BookPolicy::class
+    ];
 
     /**
      * Register any authentication / authorization services.
      */
     public function boot(): void
     {
-        Gate::define('edit-book', function (User $user, Book $book) {
-            return $user->id === $book->user_id || $user->role_id === 2;
-        });
-        Gate::define('update-book', function (User $user, Book $book) {
-            return $user->id === $book->user_id || $user->role_id === 2;
-        });
-        Gate::define('delete-book', function (User $user, Book $book) {
-            return $user->id === $book->user_id || $user->role_id === 2;
-        });
-        Gate::define('get-book', function (User $user, Book $book) {
-            return $user->id === $book->user_id || $user->role_id == 2;
-        });
+        $this->registerPolicies();
+        // Gate::define('edit-book', function (User $user, Book $book) {
+        //     return $user->id === $book->user_id || $user->role_id === 2;
+        // });
+        // Gate::define('update-book', function (User $user, Book $book) {
+        //     return $user->id === $book->user_id || $user->role_id === 2;
+        // });
+        // Gate::define('delete-book', function (User $user, Book $book) {
+        //     return $user->id === $book->user_id || $user->role_id === 2;
+        // });
+        // Gate::define('get-book', function (User $user, Book $book) {
+        //     return $user->id === $book->user_id || $user->role_id == 2;
+        // });
     }
 }

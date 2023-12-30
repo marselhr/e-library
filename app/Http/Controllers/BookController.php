@@ -15,6 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class BookController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -22,12 +23,12 @@ class BookController extends Controller
      */
     public function index()
     {
-
+        $user = Auth::user();
         $books = Book::orderBy('updated_at', 'DESC')->where('deleted_at', null)
             ->with(['user', 'category'])->get();
 
-        // role id for admin = 2
-        if (Auth::user()->role_id !== 2) {
+        // If Not Admin User Access all data
+        if (!$user->isAdmin()) {
             $books = $books->where('user_id', Auth::user()->id);
         }
 
@@ -98,12 +99,9 @@ class BookController extends Controller
      */
     public function show($slug)
     {
+
         $book = Book::where('slug', $slug)->with(['category', 'user'])->firstOrFail();
-
-        if (!Gate::allows('get-book', $book)) {
-            return to_route('home')->with('warning', 'Anda Tidak Punya Ijin Melihat Data Ini');
-        }
-
+        $this->authorize('view', $book);
         return view('admin.pages.show-book', compact('book'));
     }
 
@@ -115,10 +113,9 @@ class BookController extends Controller
      */
     public function edit(string $slug)
     {
+
         $book = Book::where('slug', $slug)->with(['user', 'category'])->firstOrFail();
-        if (!Gate::allows('update-book', $book)) {
-            return to_route('home')->with('warning', 'Anda Tidak Punya Ijin Untuk Mengedit Data Ini');
-        }
+        $this->authorize('update', $book);
         $categories = BookCategory::whereNull('deleted_at')->get();
 
         return view('admin.pages.edit-book', compact('book', 'categories'));
@@ -134,9 +131,7 @@ class BookController extends Controller
     {
 
         $book = Book::find($book);
-        if (!Gate::allows('update-book', $book)) {
-            return to_route('home')->with('warning', 'Anda Tidak Punya Ijin Untuk Mengupdate Data Ini');
-        }
+        $this->authorize('update', $book);
 
         $validated = $request->validate([
             'title' => 'required|string|max:255|unique:books,title,' . $book->id,
@@ -188,10 +183,7 @@ class BookController extends Controller
     {
         $book = Book::find($book);
 
-        if (!Gate::allows('delete-book', $book)) {
-            return to_route('home')->with('warning', 'Anda Tidak Punya Ijin Untuk Menghapus Data Ini');
-        }
-
+        $this->authorize('delete', $book);
         if (file_exists(public_path('uploads/book-cover/' . $book->cover))) {
             unlink(public_path('uploads/book-cover/' . $book->cover));
             /*
