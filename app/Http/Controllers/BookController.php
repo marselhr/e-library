@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Book;
 use App\Exports\BooksExport;
 use App\Models\BookCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -21,19 +20,20 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $user = Auth::user();
-
         $query = Book::query();
 
+        // geting data if user is admin role
         if (!$user->isAdmin()) {
             $query = $query->where('user_id', Auth::user()->id);
         }
 
+        // geting data if user is general user and have request filter by category
         if (isset($request->category) && $request->category != null) {
             $query->whereHas('category', function ($q) use ($request) {
-                $q->where('slug', $request->category);
+                $q->whereIn('slug', $request->category);
             });
         }
 
@@ -47,7 +47,7 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $categories = BookCategory::whereNull('deleted_at')->get();
         return view('admin.pages.add-book', compact('categories'));
@@ -56,7 +56,7 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBookRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -81,8 +81,8 @@ class BookController extends Controller
             $request->file->move(public_path('uploads/book-file'), $file);
         }
 
+        DB::beginTransaction();
         if ($validate) {
-            DB::beginTransaction();
 
             Book::create([
                 'user_id' => Auth::user()->id, //nanti dibenerin
@@ -104,7 +104,7 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($slug): View
     {
 
         $book = Book::where('slug', $slug)->with(['category', 'user'])->firstOrFail();
@@ -118,7 +118,7 @@ class BookController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit(string $slug)
+    public function edit(string $slug): View
     {
 
         $book = Book::where('slug', $slug)->with(['user', 'category'])->firstOrFail();
