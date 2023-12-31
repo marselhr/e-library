@@ -91,7 +91,7 @@
                                             <th>Judul</th>
                                             <th>Categori</th>
 
-                                            @if (Auth::user()->role_id == 2)
+                                            @if (Auth::user()->isAdmin())
                                                 <th>Pengunggah</th>
                                             @endif
 
@@ -110,7 +110,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="col-3">
-                                                    <p class=" mb-0">{{ $book->category->name }}</p>
+                                                    <p class=" mb-0">{{ $book->categories[0]->name }}</p>
                                                 </td>
 
                                                 @if (Auth::user()->role_id == 2)

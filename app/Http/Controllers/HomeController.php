@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Category;
+use App\Models\BookCategory;
 use Illuminate\Http\Request;
 use App\Models\CourseMaterial;
 use App\Http\Controllers\Controller;
-use App\Models\BookCategory;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -30,7 +31,7 @@ class HomeController extends Controller
         if (Auth::check()) {
             $books = Book::whereNull('deleted_at')
                 ->orderBy('updated_at', 'DESC')
-                ->with(['category'])
+                ->with(['categories'])
                 ->take(5)
                 ->get();
             if (Auth::user()->role_id !== 2) {
@@ -45,7 +46,7 @@ class HomeController extends Controller
 
                 $data['users_count'] = User::all()->count();
                 $data['books_title_count'] = Book::all()->count();
-                $data['book_categories_count'] = BookCategory::all()->count();
+                $data['book_categories_count'] = Category::all()->count();
 
                 $data['books_count'] = 0;
                 foreach ($books as $book) {
