@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\BookCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/books/{slug}', [BookController::class, 'show'])->name('books.show');
 });
 Route::middleware(['auth', 'is.admin'])->group(function () {
-    Route::get('/categories', [BookCategoryController::class, 'index'])->name('categories.index');
-    Route::get('/categories/create', [BookCategoryController::class, 'create'])->name('categories.create');
-    Route::post('/categories', [BookCategoryController::class, 'store'])->name('categories.store');
-    Route::get('/categories/{id}', [BookCategoryController::class, 'edit'])->name('categories.edit');
-    Route::put('/categories/{id}', [BookCategoryController::class, 'update'])->name('categories.update');
-    Route::delete('/categories/{id}', [BookCategoryController::class, 'destroy'])->name('categories.delete');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/categories/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.delete');
 });
 
 Auth::routes();
