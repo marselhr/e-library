@@ -21,18 +21,25 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $books = Book::orderBy('updated_at', 'DESC')->where('deleted_at', null)
-            ->with(['user', 'category'])->get();
 
-        // If Not Admin User Access all data
+        $query = Book::query();
+
         if (!$user->isAdmin()) {
-            $books = $books->where('user_id', Auth::user()->id);
+            $query = $query->where('user_id', Auth::user()->id);
         }
 
-        return view('admin.pages.book', compact('books'));
+        if (isset($request->category) && $request->category != null) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+        $books = $query->get();
+        $categories = BookCategory::whereNull('deleted_at')->get();
+        return view('admin.pages.book', compact('books', 'categories'));
     }
 
     /**

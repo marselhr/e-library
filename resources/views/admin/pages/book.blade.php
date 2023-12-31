@@ -44,11 +44,24 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <div id="table1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                        <div class="row">
 
-                        </div>
                         <div class="row dt-row">
-                            <div class="col-sm-12">
+                            <div class="col-12 col-sm-2">
+                                <h6>Kategori</h6>
+                                <form action="{{ route('book.index') }}" class="d-inline" method="GET">
+                                    @foreach ($categories as $item)
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" name="category[]" value="{{ $item->slug }}"
+                                                class="form-check-input form-check-primary" id="select{{ $item->id }}">
+                                            <label class="form-check-label"
+                                                for="select{{ $item->id }}">{{ $item->name }}</label>
+                                        </div>
+                                    @endforeach
+                                    <hr>
+                                    <button type="submit" class="float-end btn btn-sm btn-primary">Terapkan</button>
+                                </form>
+                            </div>
+                            <div class="col-sm-10 col-12">
                                 <table class="table dataTable no-footer" id="datatable" aria-describedby="table1_info">
                                     <thead>
                                         <tr>
