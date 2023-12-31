@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -61,9 +62,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($bookCategory)
+    public function edit($slug)
     {
-        $category = Category::find($bookCategory);
+        $category = Category::where('slug', $slug)->first();
 
         return view('admin.pages.edit-category', compact('category'));
     }
@@ -80,7 +81,7 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => [
                 'required',
-                Rule::unique('book_categories')->ignore($category->id),
+                Rule::unique('categories')->ignore($category->id),
             ],
             'description' => 'required'
         ]);

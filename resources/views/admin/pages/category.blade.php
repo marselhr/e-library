@@ -69,7 +69,7 @@
                                                 <td>
                                                     <div class="btn-group">
 
-                                                        <a href="{{ route('categories.edit', $category->id) }}"
+                                                        <a href="{{ route('categories.edit', $category->slug) }}"
                                                             class="btn btn-sm btn-success" data-bs-toggle="tooltip"
                                                             data-bs-placement="top" data-bs-title="Edit Kategori"><i
                                                                 class="iconly-boldEdit"></i></a>
