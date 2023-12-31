@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookCategory extends Model
@@ -30,8 +31,13 @@ class BookCategory extends Model
         ];
     }
 
-    public function books()
+    public function book(): BelongsTo
     {
-        return $this->hasMany(Book::class, 'category_id', 'id');
+        return $this->belongsTo(Book::class, 'book_id', 'id');
+    }
+
+    public function categories(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

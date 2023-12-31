@@ -21,10 +21,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        Course::factory(10)->has(
-            CourseMaterial::factory(10)
-        )->create();
-
         DB::table('roles')->insert([
             [
                 'name' => 'guest',
@@ -35,13 +31,11 @@ class DatabaseSeeder extends Seeder
                 'description' => 'administrator',
             ],
         ]);
-        BookCategory::factory()->count(5)->create();
-        User::factory()->count(5)->has(
-            Book::factory()->count(10)
-                ->state(new Sequence(
-                    fn (Sequence $sequence) => ['category_id' => BookCategory::all()->random()],
-                ))
-        )
-            ->create();
+
+        $this->call([
+            UserSeeder::class,
+            CategorySeeder::class,
+            BookSeeder::class
+        ]);
     }
 }

@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('book_categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 255);
-            $table->string('slug', 255);
-            $table->string('description', 255);
-            $table->softDeletes();
+            $table->foreignUuid('category_id')->references('id')->on('categories');
+            $table->foreignUuid('book_id')->references('id')->on('books');
             $table->timestamps();
         });
     }

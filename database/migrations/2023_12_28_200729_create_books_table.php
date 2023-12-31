@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('category_id')->constrained('book_categories', 'id');
             $table->foreignUuid('user_id')->constrained('users', 'id');
             $table->string('title', 255);
             $table->string('slug', 255);
