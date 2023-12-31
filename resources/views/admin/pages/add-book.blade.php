@@ -1,4 +1,39 @@
 @extends('layouts.app', ['title' => 'Tambah Buku'])
+@push('customCss')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
+@push('customJs')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            generateOptionCategory();
+            $('#category-input').select2({
+                multiple: true,
+                width: '100% ',
+                placeholder: 'Pilih Hak Category',
+            });
+
+        });
+        const generateOptionCategory = () => {
+            $.ajax({
+                url: '{{ route('master-data.category.select2data') }}',
+                type: 'GET',
+                success: function(response) {
+                    if (response.success) {
+                        let data = response.data;
+
+                        let option = '';
+                        data.forEach(element => {
+                            option +=
+                                `<option value="${element.id}">${element.text}</option>`;
+                        });
+                        $('#category-input').append(option);
+                    }
+                }
+            })
+        }
+    </script>
+@endpush
 @section('content')
     <div class="page-heading">
         <div class="page-title">
@@ -43,15 +78,15 @@
                             <div class="form-group mb-3 col-12 col-md-6">
                                 <label for="category_id" class="form-label">Kategori Buku</label>
 
-                                <select name="category_id" id=""
-                                    class="form-select @error('category_id') is-invalid @enderror">
-                                    @foreach ($categories as $category)
-                                        @if (old('category_id') === $category->id)
+                                <select name="category_id[]" id="category-input"
+                                    class="form-control @error('category_id') is-invalid @enderror">
+                                    {{-- @foreach ($categories as $category) --}}
+                                    {{-- @if (old('category_id') === $category->id)
                                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                         @else
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endif
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                                 @error('category_id')
                                     <div class="invalid-feedback">

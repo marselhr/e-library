@@ -10,7 +10,6 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -43,7 +42,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $categories = BookCategory::whereNull('deleted_at')->get();
+        $categories = Category::whereNull('deleted_at')->get();
         return view('admin.pages.add-book', compact('categories'));
     }
 
@@ -55,6 +54,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+
         $validate = $request->validate([
             'title' => 'required|string|max:255|unique:books,title',
             'quantity' => 'required|integer',
@@ -78,7 +78,7 @@ class BookController extends Controller
         if ($validate) {
             DB::beginTransaction();
 
-            Book::create([
+            $book = Book::create([
                 'user_id' => Auth::user()->id, //nanti dibenerin
                 'category_id' => $request->category_id,
                 'title' => $request->title,
@@ -87,6 +87,13 @@ class BookController extends Controller
                 'cover' => $cover,
                 'file' => $file,
             ]);
+
+            foreach ($request->category_id as $item) {
+                BookCategory::create([
+                    'book_id' => $book->id,
+                    'category_id' => $item
+                ]);
+            }
             DB::commit();
             return to_route('book.index')->with('success', trans('response.success.store', ['data' => 'Data Buku']));
         }
@@ -117,7 +124,7 @@ class BookController extends Controller
 
         $book = Book::where('slug', $slug)->with(['user', 'category'])->firstOrFail();
         $this->authorize('update', $book);
-        $categories = BookCategory::whereNull('deleted_at')->get();
+        $categories = Category::whereNull('deleted_at')->get();
 
         return view('admin.pages.edit-book', compact('book', 'categories'));
     }

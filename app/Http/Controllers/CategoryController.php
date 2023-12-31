@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function edit($slug)
     {
-        $category = Category::where('slug', $slug)->first();
+        $category = Category::where('slug', $slug)->first;
 
         return view('admin.pages.edit-category', compact('category'));
     }
@@ -104,5 +104,23 @@ class CategoryController extends Controller
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
+    }
+
+    public function selet2Data(Request $request)
+    {
+        $data = Category::whereNull('deleted_at')->get();
+        $result = [];
+
+        foreach ($data as $item) {
+            $result[] = [
+                'id' => $item->id,
+                'text' => $item->name
+            ];
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $result
+        ]);
     }
 }

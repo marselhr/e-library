@@ -4,9 +4,10 @@
 */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Sweetalert2 = factory());
-})(this, (function () { 'use strict';
+    typeof define === 'function' && define.amd ? define(factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Sweetalert2 = factory());
+})(this, (function () {
+  'use strict';
 
   function _classPrivateFieldGet(receiver, privateMap) {
     var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get");
@@ -387,17 +388,17 @@
     /** @type {NodeListOf<HTMLElement>} */
     const focusableElementsWithTabindex = popup.querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])');
     const focusableElementsWithTabindexSorted = Array.from(focusableElementsWithTabindex)
-    // sort according to tabindex
-    .sort((a, b) => {
-      const tabindexA = parseInt(a.getAttribute('tabindex') || '0');
-      const tabindexB = parseInt(b.getAttribute('tabindex') || '0');
-      if (tabindexA > tabindexB) {
-        return 1;
-      } else if (tabindexA < tabindexB) {
-        return -1;
-      }
-      return 0;
-    });
+      // sort according to tabindex
+      .sort((a, b) => {
+        const tabindexA = parseInt(a.getAttribute('tabindex') || '0');
+        const tabindexB = parseInt(b.getAttribute('tabindex') || '0');
+        if (tabindexA > tabindexB) {
+          return 1;
+        } else if (tabindexA < tabindexB) {
+          return -1;
+        }
+        return 0;
+      });
 
     /** @type {NodeListOf<HTMLElement>} */
     const otherFocusableElements = popup.querySelectorAll(focusable);
@@ -2081,12 +2082,12 @@
       return true;
     }
     if (!isScrollable(container) && target instanceof HTMLElement && target.tagName !== 'INPUT' &&
-    // #1603
-    target.tagName !== 'TEXTAREA' &&
-    // #2266
-    !(isScrollable(htmlContainer) &&
-    // #1944
-    htmlContainer.contains(target))) {
+      // #1603
+      target.tagName !== 'TEXTAREA' &&
+      // #2266
+      !(isScrollable(htmlContainer) &&
+        // #1944
+        htmlContainer.contains(target))) {
       return true;
     }
     return false;
@@ -4279,4 +4280,4 @@
   return Swal;
 
 }));
-if (typeof this !== 'undefined' && this.Sweetalert2){this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
+if (typeof this !== 'undefined' && this.Sweetalert2) {this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
