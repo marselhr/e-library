@@ -73,7 +73,11 @@
                                                 <td>{{ $book->title }}</td>
                                                 <td class="word-wrap">{{ $book->description }}</span>
                                                 </td>
-                                                <td>{{ $book->category->name ?? 'Tidak Ada' }}</td>
+                                                <td>
+                                                    @foreach ($book->categories as $category)
+                                                        {{ $category->name ?? 'Tidak Ada' }},
+                                                    @endforeach
+                                                </td>
                                                 <td>{{ $book->quantity }}</td>
                                                 <td>
                                                     <div class="btn-group">

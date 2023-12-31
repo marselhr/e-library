@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Book;
 use App\Exports\BooksExport;
 use App\Models\BookCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,7 @@ class BookController extends Controller
     {
         $user = Auth::user();
         $books = Book::orderBy('updated_at', 'DESC')->where('deleted_at', null)
-            ->with(['user', 'category'])->get();
+            ->with(['user', 'categories'])->get();
 
         // If Not Admin User Access all data
         if (!$user->isAdmin()) {
