@@ -47,18 +47,21 @@
 
                         <div class="row dt-row">
                             <div class="col-12 col-sm-2">
-                                <h6>Kategori</h6>
+                                <p class="fw-medium">Filter Kategori:</p>
                                 <form action="{{ route('book.index') }}" class="d-inline" method="GET">
                                     @foreach ($categories as $item)
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="category[]" value="{{ $item->slug }}"
-                                                class="form-check-input form-check-primary" id="select{{ $item->id }}">
+                                                class="form-check-input form-check-primary" id="select{{ $item->id }}"
+                                                @if (request()->has('category') && in_array($item->slug, request()->input('category'))) checked @endif>
                                             <label class="form-check-label"
                                                 for="select{{ $item->id }}">{{ $item->name }}</label>
                                         </div>
                                     @endforeach
                                     <hr>
                                     <button type="submit" class="float-end btn btn-sm btn-primary">Terapkan</button>
+                                    <a href="{{ route('book.index') }}"
+                                        class="btn btn-sm float-end btn-secondary">Reset</a>
                                 </form>
                             </div>
                             <div class="col-sm-10 col-12">
