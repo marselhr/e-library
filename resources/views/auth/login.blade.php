@@ -58,6 +58,13 @@
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary ">{{ __('Login') }}</button>
                             </div>
+
+                            <hr class="my-3">
+
+                            <a href="/auth/google/redirect"
+                                class="google btn btn-danger d-flex justify-content-center align-items-center ">
+                                <span class="bi-google me-3"></span> Login with Google
+                            </a>
                         </div>
 
                     </form>
