@@ -83,6 +83,13 @@ Complete the Environment Variable below in the .env file with your google cloud 
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 ```
+
+### Set Up Facebook Credential
+Complete the values for the following variables with your facebook credentials for the authentication feature with facebook to work properly
+```
+FACEBOOK_CLIENT_ID=
+FACEBOOK_CLIENT_SECRET=
+```
 ### Set Up Mailtrap Sandbox
 Fill in the value of each variable with the configuration you got from mailtrap.io
 ```
