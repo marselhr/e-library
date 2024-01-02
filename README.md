@@ -43,7 +43,7 @@ cd e-library
 
 ### Install packages
 
-Install vendor using composer
+❗make sure you already have composer on your computer then install vendor using composer
 
 ```bash
 composer update
