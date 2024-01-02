@@ -36,7 +36,7 @@ The technologies I used in this website project are listed below:
 open your terminal, go to the directory that you will install this project, then run the following command:
 
 ```bash
-https://github.com/marselhr/e-library.git
+git clone https://github.com/marselhr/e-library.git
 
 cd e-library
 ```
