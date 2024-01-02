@@ -63,11 +63,11 @@
 
                             <a href="{{ route('social.auth.redirect', 'google') }}"
                                 class="google btn btn-danger mb-2 d-flex justify-content-center align-items-center ">
-                                <span class="bi-google me-3"></span> Login with Google
+                                <span class="bi-google me-3"></span> {{ __('Login With Google') }}
                             </a>
                             <a href="{{ route('social.auth.redirect', 'facebook') }}"
                                 class="google btn btn-outline-primary d-flex justify-content-center align-items-center ">
-                                <span class="bi-facebook me-3"></span> Login with Facebook
+                                <span class="bi-facebook me-3"></span> {{ __('Login With Facebook') }}
                             </a>
                         </div>
 

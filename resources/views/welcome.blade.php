@@ -23,8 +23,10 @@
                         </div>
                         <div class="header-top-right">
 
-                            <a href="{{ route('login') }}" class="nav-link text-primary fw-medium">Login</a>
-                            <a href="{{ route('register') }}" class="nav-link text-primary fw-medium">Register</a>
+                            <a href="{{ route('login') }}"
+                                class="nav-link text-primary fw-medium">{{ __('Login') }}</a>
+                            <a href="{{ route('register') }}"
+                                class="nav-link text-primary fw-medium">{{ __('Register') }}</a>
                             @auth
 
                                 <div class="dropdown">
