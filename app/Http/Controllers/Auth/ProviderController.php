@@ -24,15 +24,10 @@ class ProviderController extends Controller
                 'provider_id' => $socialUser->id,
             ])->first();
 
-            if ($user) {
-                Auth::login($user);
-                return redirect()->route('home');
-            }
-            if (User::where('email', $socialUser->getEmail())->exists()) {
-                return redirect()->route('login')->withErrors(['email' => 'Email Telah Digunakan Untuk Masuk']);
-            }
-
             if (!$user) {
+                if (User::where('email', $socialUser->getEmail())->exists()) {
+                    return redirect()->route('login')->withErrors(['email' => 'Email Telah Digunakan Untuk Masuk']);
+                }
                 $user = User::create([
                     'provider_id' => $socialUser->getId(),
                     'provider' => $provider,
