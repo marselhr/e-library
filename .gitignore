@@ -3,7 +3,12 @@
 /public/build
 /public/hot
 /public/storage
-/public/uploads
+/public/uploads/book-cover/*
+/public/uploads/book-file/*
+!/public/uploads/book-cover/bulan.jpeg
+!/public/uploads/book-cover/naruto-shippuden.jpeg
+!/public/uploads/book-cover/laskar-pelangi.jpeg
+!/public/uploads/book-file/contoh.pdf
 /storage/*.key
 /vendor
 .env
