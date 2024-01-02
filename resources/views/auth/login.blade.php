@@ -61,9 +61,13 @@
 
                             <hr class="my-3">
 
-                            <a href="/auth/google/redirect"
-                                class="google btn btn-danger d-flex justify-content-center align-items-center ">
+                            <a href="{{ route('social.auth.redirect', 'google') }}"
+                                class="google btn btn-danger mb-2 d-flex justify-content-center align-items-center ">
                                 <span class="bi-google me-3"></span> Login with Google
+                            </a>
+                            <a href="{{ route('social.auth.redirect', 'facebook') }}"
+                                class="google btn btn-outline-primary d-flex justify-content-center align-items-center ">
+                                <span class="bi-facebook me-3"></span> Login with Facebook
                             </a>
                         </div>
 
