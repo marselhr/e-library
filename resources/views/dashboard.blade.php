@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Users</h6>
+                                        <h6 class="text-muted font-semibold">Pengguna</h6>
                                         <h6 class="font-extrabold mb-0">{{ $data['users_count'] }}</h6>
                                     </div>
                                 </div>
@@ -62,12 +62,12 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                         <div class="stats-icon red mb-2">
-                                            <i class="iconly-boldBookmark"></i>
+                                            <i class="bi-box-fill"></i>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Saved Post</h6>
-                                        <h6 class="font-extrabold mb-0">112</h6>
+                                        <h6 class="text-muted font-semibold">Kategori</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $data['book_categories_count'] }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                                 <td class="col-6">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar avatar-md">
-                                                            <img src="assets/static/images/faces/5.jpg">
+                                                            <img src="{{ asset('uploads/book-cover/' . $book->cover) }}">
                                                         </div>
                                                         <p class="font-bold ms-3 mb-0">{{ $book->title }}</p>
                                                     </div>
