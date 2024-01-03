@@ -12,7 +12,7 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('courses.index') }}">Data Kategori</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Data Kategori</a></li>
                             <li class="breadcrumb-item active " aria-current="page">Edit Data
                             </li>
                         </ol>
